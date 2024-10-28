@@ -1,0 +1,62 @@
+body{
+    background-color: black;
+}
+.output{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.card{
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 15px 20px;
+    width: 80%;
+}
+.head-two{
+    text-align: center;
+    margin-top: 20px;
+    background-color: aqua;
+    color: #000;
+    font-size: 3rem;
+}
+.parent-div-img{
+    display: flex;
+    gap: 50vh;
+    align-items: center;
+    background-color: #ffffff;
+}
+.img{
+    width: 300px;
+    margin-left: 50px;
+}
+.btn-container{
+    display: flex;
+    width: 30%;
+    padding: 0px;
+    align-items: center;
+    gap: 10px;
+}
+.plus{
+    background-color: aquamarine;
+    border: 1px solid white;
+    width: 30%;
+    height: 30px;
+}
+.minus{
+    background-color: aquamarine;
+    border: 1px solid white;
+    width: 30%;
+    height: 30px;
+}
+.btn-delete{
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: #ffffff;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+
