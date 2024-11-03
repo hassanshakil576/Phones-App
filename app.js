@@ -6,7 +6,7 @@ const phones = [
       rom: 128,
       camera: "64 megapixel",
       price: 799,
-      image: "./images/galaxy-s21.jpg",
+      image: "./images/s21.png",
     },
     {
       brand: "Apple",
@@ -15,7 +15,7 @@ const phones = [
       rom: 128,
       camera: "12 megapixel",
       price: 799,
-      image: "./images/iphone 13.jpeg",
+      image: "./images/Iphone 13.png",
     },
     {
       brand: "OnePlus",
@@ -33,7 +33,7 @@ const phones = [
       rom: 128,
       camera: "50 megapixel",
       price: 599,
-      image: "./images/pixel-6.webp",
+      image: "./images/google-pixel-6.png",
     },
     {
       brand: "Xiaomi",
@@ -42,7 +42,7 @@ const phones = [
       rom: 256,
       camera: "108 megapixel",
       price: 749,
-      image: "./images/mi-11.jfif",
+      image: "./images/xiaomi mi 11.png",
     },
     {
       brand: "Sony",
@@ -51,7 +51,7 @@ const phones = [
       rom: 256,
       camera: "12 megapixel",
       price: 1299,
-      image: "./images/Sony-1vi-Black.jpg",
+      image: "./images/sony-xperia.png",
     },
     {
       brand: "Oppo",
@@ -60,7 +60,7 @@ const phones = [
       rom: 256,
       camera: "50 megapixel",
       price: 1149,
-      image: "./images/oppo x3 pro.jpg",
+      image: "./images/oppo.png",
     },
     {
       brand: "Vivo",
@@ -87,7 +87,7 @@ const phones = [
       rom: 256,
       camera: "108 megapixel",
       price: 599,
-      image: "./images/motorolla.webp",
+      image: "./images/moto.png",
     },
     {
       brand: "Realme",
@@ -96,7 +96,7 @@ const phones = [
       rom: 256,
       camera: "64 megapixel",
       price: 499,
-      image: "./images/realme gt.webp",
+      image: "./images/realme.png",
     },
     {
       brand: "Asus",
@@ -105,7 +105,7 @@ const phones = [
       rom: 512,
       camera: "64 megapixel",
       price: 999,
-      image: "./images/rog phonne.webp",
+      image: "./images/rog.png",
     },
     {
       brand: "HTC",
@@ -114,7 +114,7 @@ const phones = [
       rom: 128,
       camera: "48 megapixel",
       price: 399,
-      image: "./images/htc.jpg",
+      image: "./images/htc.png",
     },
     {
       brand: "Huawei",
@@ -123,7 +123,7 @@ const phones = [
       rom: 256,
       camera: "50 megapixel",
       price: 899,
-      image: "./images/Huawei-P40-Pro.png",
+      image: "./images/huawei.png",
     },
     {
       brand: "LG",
@@ -132,7 +132,7 @@ const phones = [
       rom: 256,
       camera: "64 megapixel",
       price: 999,
-      image: "./images/lg wing.webp",
+      image: "./images/lg.png",
     },
     {
       brand: "ZTE",
@@ -141,7 +141,7 @@ const phones = [
       rom: 128,
       camera: "64 megapixel",
       price: 399,
-      image: "./images/zte.jpg",
+      image: "./images/ason.png",
     },
     {
       brand: "BlackBerry",
@@ -150,7 +150,7 @@ const phones = [
       rom: 64,
       camera: "12 megapixel",
       price: 649,
-      image: "./images/blackberry.jfif",
+      image: "./images/blackberry.png",
     },
     {
       brand: "Lenovo",
@@ -159,7 +159,7 @@ const phones = [
       rom: 512,
       camera: "64 megapixel",
       price: 999,
-      image: "./images/lenovo.webp",
+      image: "./images/lenovo.png",
     },
     {
       brand: "Alcatel",
@@ -177,7 +177,7 @@ const phones = [
       rom: 128,
       camera: "64 megapixel",
       price: 449,
-      image: "./images/Tcl.webp",
+      image: "./images/tcl.png",
     },
   ];
 
@@ -191,8 +191,10 @@ if (checkDataFromLocalStorage === null) {
 } else {
   cartItems = [...checkDataFromLocalStorage];
 }
+// console.log(checkDataFromLocalStorage);
 
-console.log(cartItems);
+
+// console.log(cartItems);
 
 phones.map(function(item , index){
     // console.log(item);
@@ -212,8 +214,8 @@ phones.map(function(item , index){
 function addToCart(index) {
   const checkIndex = cartItems.indexOf(phones[index]);
   if (checkIndex === -1) {
-    phones[index].quantity = 1;
     cartItems.push(phones[index]);
+    phones[index].quantity = 1;
   } else {
     cartItems[checkIndex].quantity += 1;
   }
@@ -228,13 +230,10 @@ function addToCart(index) {
 
 
 function checkOut(){
-  console.log("checjkout");
+  // console.log("checjkout");
   let convertArrIntoString = JSON.stringify(cartItems)
   localStorage.setItem("cart" , convertArrIntoString);
-  // console.log(convertArrIntoString);
-  
   window.location = "cart.html";
-
 }
 
 // let user = localStorage.getItem('cart')

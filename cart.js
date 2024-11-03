@@ -1,41 +1,54 @@
 let convert = JSON.parse(localStorage.getItem("cart"));
 console.log(convert);
 
-let div = document.querySelector(".output");
+let div = document.querySelector(".container");
 
 
 convert.map(function(item , index){
     div.innerHTML += `<div class = "card">
-<div class = "parent-div-img">
-     <div class = "child-img-div">
+        <div class = "parent-div-img">
+        <div class = "child-img-div">
             <img class = "img" src="${item.image}" />
-            </div>
-    <div class = "content">
+        </div>
+        <div class = "content">
             <h1>Brand: ${item.brand}</h1>
             <h1>Model:  ${item.model}</h1>
             <h1>Price: $${item.price}</h1>
         <div class  = "btn-container">
-            <button class = "plus" onclick = "increment(${index})">+</button>
-            <h1 id = "num-quantity-${index}">1</h1>
-            <button class = "minus" onclick = "decrement(${index})">-</button>
+            <button class = "plus" onclick = "increment(${index} , ${item.price})">+</button>
+            <h1 id = "num-quantity-${index}">${item.quantity}</h1>
+            <button class = "minus" onclick = "decrement(${index} , ${item.price})">-</button>
         </div>
+            <h2 id = "price-increase-${index}">price$ ${item.price * item.quantity}</h2>
+            <button class = "buy-now-btn" onclick = "buyNow()">Buy now</button>
             <button class= "btn-delete" onclick = "deleteData(${index})">Delete</button>
-    </div>
-</div>
-            </div>
-            `
+        </div>
+        </div>
+        </div>`
 })
 
-function increment(index){
+
+function increment(index , price){
     let h1 = document.querySelector(`#num-quantity-${index}`)
+    let h2 = document.querySelector(`#price-increase-${index}`)
     h1.innerHTML++;
+    h2.innerHTML = `Price $${price * h1.innerHTML}`;
+
+    convert[index].quantity = parseInt(h1.innerHTML);
+    localStorage.setItem("cart", JSON.stringify(convert));
 }
 
-function decrement(index){
+function decrement(index , price){
     let h1 = document.querySelector(`#num-quantity-${index}`)
+    let h2 = document.querySelector(`#price-increase-${index}`)
     if(h1.innerHTML > "1"){
         h1.innerHTML--;
+        h2.innerHTML = `Price $${price * h1.innerHTML}`;
+    
+        convert[index].quantity = parseInt(h1.innerHTML);
+        localStorage.setItem("cart", JSON.stringify(convert));
     }
+    
 }
 
 
@@ -46,22 +59,43 @@ function deleteData(index){
     localStorage.setItem("cart",newcartstring)
     convert.map(function(item , index){
         div.innerHTML += `<div class = "card">
-        <h1>Brand: ${item.brand}</h1>
+            <div class = "parent-div-img">
+            <div class = "child-img-div">
+                <img class = "img" src="${item.image}" />
+            </div>
+            <div class = "content">
+                <h1>Brand: ${item.brand}</h1>
                 <h1>Model:  ${item.model}</h1>
-                <h1>Ram: ${item.ram}</h1>
-                <h1>Rom: ${item.rom}</h1>
-                <h1>Camera: ${item.camera}</h1>
                 <h1>Price: $${item.price}</h1>
-                <div class  = "btn-container">
-                <button onclick = "increment()">plus</button>
-                <h1 id = "num-quantity">0</h1>
-                <button onclick = "decrement()">minus</button>
-                </div>
-                <button onclick = "deleteData(${index})">Delete</button>
-                </div>`
+            <div class  = "btn-container">
+                <button class = "plus" onclick = "increment(${index})">+</button>
+                <h1 id = "num-quantity-${index}">1</h1>
+                <button class = "minus" onclick = "decrement(${index})">-</button>
+            </div>
+                <button class= "btn-delete" onclick = "deleteData(${index})">Delete</button>
+            </div>
+            </div>
+            </div>`
     })
 }
 
+function buyNow(){
+    swal({
+      title: "Are you sure?",
+      text: "Once you add, your order will be submitted!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willSubmit) => {
+      if (willSubmit) {
+        swal("Your order has been submitted successfully!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your order is still in the cart.");
+      }
+    });
+  }
 
 
 
